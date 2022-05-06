@@ -1,0 +1,70 @@
+kind: pipeline
+type: docker
+name: default
+
+steps:
+- name: build_image
+  image: 3con/scpdwl:2
+  volumes:
+  - name: dockersock
+    path: /var/run/docker.sock
+  commands:
+  - make build_image
+  trigger:
+    branch:
+    - dev
+    - qa
+    - hml
+    - prd
+    event:
+    - push
+
+- name: deploy_dev
+  image: 3con/scpdwl:3
+  volumes:
+  - name: dockersock
+    path: /var/run/docker.sock
+  commands:
+  - make push_dev run_cnt_dev
+  when:
+    branch:
+    - dev
+
+- name: deploy_qa
+  image: 3con/scpdwl:3
+  volumes:
+  - name: dockersock
+    path: /var/run/docker.sock
+  commands:
+  - make push_qa run_cnt_qa
+  when:
+    branch:
+    - qa
+
+- name: deploy_hml
+  image: 3con/scpdwl:3
+  volumes:
+  - name: dockersock
+    path: /var/run/docker.sock
+  commands:
+  - make push_hml run_cnt_hml
+  when:
+    branch:
+    - hml
+
+- name: deploy_prd
+  image: 3con/scpdwl:3
+  volumes:
+  - name: dockersock
+    path: /var/run/docker.sock
+  commands:
+  - make push_prd
+  when:
+    branch:
+    - prd
+
+volumes:
+- name: dockersock
+  host:
+    path: /var/run/docker.sock
+
