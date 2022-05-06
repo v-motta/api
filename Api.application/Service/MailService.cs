@@ -29,7 +29,7 @@ namespace Api.application.Service
 
             var builder = new BodyBuilder
             {
-                HtmlBody = $"Nome:{mailRequest.Name} \n  Nome da Empresa: {mailRequest.NameCompany} \n Assunto:{mailRequest.Message} \n Email User: {mailRequest.EmailUser}"
+                HtmlBody = $"<b>Nome:</b> {mailRequest.Name} <br><br>  <b>Nome da Empresa:</b> {mailRequest.NameCompany}  <br><br>  <b>Email User:</b>  {mailRequest.EmailUser}  <br><br> <b>Mensagem:</b>  {mailRequest.Message}"
             };
 
             email.Body = builder.ToMessageBody();
