@@ -26,7 +26,8 @@ namespace application.Controllers
             try
             {
                 await _mailService.SendEmailAsync(request);
-                return Ok();
+
+                return StatusCode((int)HttpStatusCode.OK, "E-mail enviado com sucesso." );
             }
             catch (ArgumentException ex)
             {

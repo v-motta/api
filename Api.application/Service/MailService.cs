@@ -25,7 +25,7 @@ namespace Api.application.Service
             };
 
             email.To.Add(MailboxAddress.Parse(_mailSettings.ToMail));
-            email.Subject = "Formulário Fale Conosco CED";
+            email.Subject = "CED - Fale Conosco";
 
             var builder = new BodyBuilder
             {
