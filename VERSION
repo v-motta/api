@@ -1,3 +1,2 @@
 # Nao usar aspas
-export VERSION=Dev
-
+export VERSION=rc1.0
