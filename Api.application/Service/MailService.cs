@@ -21,7 +21,7 @@ namespace Api.application.Service
         {
             var email = new MimeMessage
             {
-                Sender = MailboxAddress.Parse(_mailSettings.fromEmail)
+                Sender = MailboxAddress.Parse(_mailSettings.FromEmail)
             };
 
             email.To.Add(MailboxAddress.Parse(_mailSettings.ToMail));
@@ -35,7 +35,7 @@ namespace Api.application.Service
             email.Body = builder.ToMessageBody();
             using var smtp = new SmtpClient();
             smtp.Connect(_mailSettings.Host, _mailSettings.Port, SecureSocketOptions.StartTls);
-            smtp.Authenticate(_mailSettings.fromEmail, _mailSettings.Password);
+            smtp.Authenticate(_mailSettings.FromEmail, _mailSettings.Password);
             await smtp.SendAsync(email);
             smtp.Disconnect(true);
         }
