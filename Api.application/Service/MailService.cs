@@ -25,11 +25,11 @@ namespace Api.application.Service
             };
 
             email.To.Add(MailboxAddress.Parse(_mailSettings.ToMail));
-            email.Subject = "CED - Fale Conosco";
+            email.Subject = "Aurora Borealis - Fale Conosco";
 
             var builder = new BodyBuilder
             {
-                HtmlBody = $"<b>Nome:</b> {mailRequest.Name} <br><br>  <b>Nome da Empresa:</b> {mailRequest.NameCompany}  <br><br>  <b>Email User:</b>  {mailRequest.EmailUser}  <br><br> <b>Mensagem:</b>  {mailRequest.Message}"
+                HtmlBody = $"<b>Nome:</b> {mailRequest.Name} <br><br>  <b>Nome da Empresa:</b> {mailRequest.Subject}  <br><br>  <b>Email User:</b>  {mailRequest.EmailUser}  <br><br> <b>Mensagem:</b>  {mailRequest.Message}"
             };
 
             email.Body = builder.ToMessageBody();
